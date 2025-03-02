@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!---Coding By CoderGirl | www.codinglabweb.com--->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <title>Login  Form </title>
+  <!---Custom CSS File--->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/login-style.css">
+  <link rel="import" href="./login.ejs">
+</head>
+<body>
+
+  <div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+
+      <header>Login</header>
+      <form action="users/login"  method="POST">
+
+        <% if (flashMessages) { %>
+          <%   if(flashMessages.error) { %>
+            <div class="alert alert-danger" role="alert">
+              <%= flashMessages.error  %>  </div>
+                  <% } %>
+                   <% } %>
+        <input type="text" name="email" placeholder="Enter your email">
+        <input type="password" name="password" placeholder="Enter your password">
+        <a href="#">Forgot password?</a>
+        <input type="submit" class="button" value="Login" id="submit">
+      </form>
+      <div class="signup">
+       <span class="signup"> Don't have an account?
+        <b><label><a href="/register">SignUp </a></label>
+        </span></b>
+      </div>
+    </div>
+   
+  </div>
+  
+</body>
+</html>

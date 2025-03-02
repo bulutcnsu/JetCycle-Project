@@ -1,0 +1,94 @@
+C:\Users\cnsub\AppData\Roaming\Easeware\DriverEasy\drivers\c3jbfp1w.esx
+
+dbUserPass123
+dbUser
+
+mongodb+srv://dbUser:<db_password>@cluster0.lmmul.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+ 
+jetcycle-cycle view section part
+
+
+<section class="cycle_section ">
+      <div class="container">
+        <div class="cycle_heading">
+          <h2>
+            New Arrivals
+          </h2>
+        </div>
+        <div class="cycle_container">
+          <div class="box">
+            <div class="box-content">
+              <div class="img-box">
+                <img src="/images/t-1.png" alt="">
+              </div>
+              <div class="detail-box">
+                <div class="text">
+                  <h6>
+                    Kids Cycle
+                  </h6>
+                  <h5>
+                    <span>$</span> 300
+                  </h5>
+                </div>
+                <div class="like">
+                  <h6>
+                    Like
+                  </h6>
+                  <div class="star_container">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-box">
+              <a href="">
+                Add To Cart
+              </a>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </section>
+----------------------------------------------------------------------------------------
+
+      
+              <div class="img-box">
+                <img class="object-fit-contain"  src="<%= product.image %>" width: "290px" height="180px">
+              </div>
+              <div class="detail-box" style="background-color: 
+              #f4fff1  ; border: outset 1px #e4f1e0; border-radius: 5%; padding:0.5em">
+              <div>
+              <div class="text">
+                  <h6>
+                    <%= product.name %>
+                  </h6>
+                  <h5>
+                    <span>$</span> <%= product.price %>
+                  </h5>
+                </div>
+                <div class="like">
+                  <h6>
+                  Size : <%= product.size %>
+                  </h6>
+                  <div class="star_container">
+                    <i><span>Color</span> <%= product.color %></i>
+                  </div>
+                </div>
+              </div>
+                   
+             
+    
+             
+            <div class="btn-box">
+              <a href="">
+                Add To Cart
+              </a>
+            </div>
+       
+          </div>

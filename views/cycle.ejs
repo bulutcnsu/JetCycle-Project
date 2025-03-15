@@ -121,7 +121,7 @@
  </div>
   </div><!--div-layout-padding-->
 
-    <% } %>
+    <% } %> <!-- End Of Admin Section-->
 
 
           <% if(user.role === 'Seller' ){ %>  
@@ -130,22 +130,21 @@
             <div class="row justify-content-center">   
             <button type="button" class="btn btn-info btn-lg " data-toggle="modal" data-target="#addProduct">Create Product</button>
             </div>
-           
-   
-    <%  for (let kategoriId in productsByCategory)  { %>
-
-    <section class="cycle_section ">
+     
+         <%  for (let categoriId in productsByCategory)  { %>
+    
+            <section class="cycle_section ">
       <div class="container">
         
         <div class="cycle_heading">
           <h3>
-            <%=  productsByCategory[kategoriId].categoryName %>
+            <%=  productsByCategory[categoriId].categoryName %>
           </h3>
         </div>
        
         <div class="cycle_container">
      
-          <%  productsByCategory[kategoriId].products.forEach(product => {  %>
+          <%  productsByCategory[categoriId].products.forEach(product => {  %>
 
          
         <div class="box">
@@ -170,7 +169,7 @@
                   </h6>
                   <div class="star_container">
                  <span style="color:black"> Color : </span>   <span class="d-inline-block rounded-circle border" 
-                    style="width: 23px; height: 23px; background-color: <%= product.color %>; border: 1px solid #ccc;">
+                    style="width: 23px; height: 23px; background-color: <%= product.color %>; border: 1px solid #ccc">
                      </span> 
                   </div>
                 </div>
@@ -187,14 +186,79 @@
           </div>
         </div>
        
-          <% }) %>     
+          <% }) %>     <!-- End Of Filter Section-->
         </div>
          </div>
 
-    </section>
+                </section>
+        <% } %>   <!-- End Of For Loop-->
+    <% } %> <!-- End Of Seller Section-->
+
+  <% }  else { %>  <!-- End Of User Section-->
+    <div class="layout_padding2-bottom">
+    <%  for (let categoriId in productsByCategory)  { %>
     
-    <% } %>   
-    <% } %>
+  <section class="cycle_section ">
+<div class="container">
+  
+  <div class="cycle_heading">
+    <h3>
+      <%=  productsByCategory[categoriId].categoryName %>
+    </h3>
+  </div>
+ 
+  <div class="cycle_container">
+
+    <%  productsByCategory[categoriId].products.forEach(product => {  %>
+
+   
+  <div class="box">
+      <div class="box-content">
+        <div class="img-box">
+          <img class="object-fit-contain"  src="<%= product.image %>" width: "290px" height="180px">
+        </div>
+        <div class="detail-box" style="background-color: 
+        #f4fff1  ; border: outset 1px #e4f1e0; border-radius: 5%; padding:0.5em">
+    
+        <div class="text">
+            <h6>
+              <%= product.name %>
+            </h6>
+            <h5>
+              <span>$</span> <%= product.price %>
+            </h5>
+          </div>
+          <div class="like">
+            <h6>
+            Size : <%= product.size %>
+            </h6>
+            <div class="star_container">
+           <span style="color:black"> Color : </span>   <span class="d-inline-block rounded-circle border" 
+              style="width: 23px; height: 23px; background-color: <%= product.color %>; border: 1px solid #ccc">
+               </span> 
+            </div>
+          </div>
+
+   
+        </div>
+       
+      <div class="btn-box">
+        <a href="">
+          Add To Cart
+        </a>
+      </div>
+ 
+    </div>
+  </div>
+ 
+    <% }) %>     <!-- End Of Filter Section-->
+  </div>
+   </div>
+  
+          </section>
+  <% } %>
+</div>
+<% } %>
 
      <div class="modal fade" id="addProduct" role="dialog">
       <div class="modal-dialog">
@@ -304,68 +368,10 @@
           </div>
        </div>
       </div>
-    </div>
-    <!-- end cycle section -->
+
+  
  
-    <% } else {  %>   
-
-      <div class="layout_padding2-bottom">
-      <%  for( let i=0; i<categories.length; i++) { %>
-
-        <section class="cycle_section ">
-          <div class="container">
-            
-            <div class="cycle_heading">
-              <h2>
-                <%= categories[i].name %>
-              </h2>
-            </div>
-           
-            <div class="cycle_container">
-            
-              <%  for( let k=0; k< products.length; k++) { %>
     
-              <div class="box">
-                <div class="box-content">
-                  <div class="img-box">
-                    <img class="object-fit-contain"  src="<%= products[k].image %>" width: "290px" height="180px">
-                  </div>
-                  <div class="detail-box" style="background-color: 
-                  #f4fff1  ; border: outset 2px #e4f1e0; border-radius: 5%; padding:0.5em">
-                    <div class="text">
-                      <h6>
-                        <%= products[k].name %>
-                      </h6>
-                      <h5>
-                        <span>$</span> <%= products[k].price %>
-                      </h5>
-                    </div>
-                    <div class="like">
-                      <h6>
-                      Size : <%= products[k].size %>
-                      </h6>
-                      <div class="star_container">
-                        <i><span>Color</span> <%= products[k].color %></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="btn-box">
-                  <a href="">
-                    Add To Cart
-                  </a>
-                </div>
-              </div>
-              <% } %>         
-            </div>
-          
-          </div>
-    
-        </section>
-
-        <% } %>
-      </div>
-      <% } %>  
 
   <%- include  ('../partials/_info');  %> 
   <!-- end info_section -->

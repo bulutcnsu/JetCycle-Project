@@ -38,18 +38,26 @@ if(mongoose.Error) {
 }
 
 exports.getAllProducts =  async (req, res) => {
-const user = await User.findOne({_id:req.session._id});
-const allusers = await User.find();
-const categories  = await Category.find();
-const products = await  Product.find().populate("category");
+  const user = await User.findOne({_id:req.session._id});
+  const allusers = await User.find();
+  const categories  = await Category.find();
+  const products = await  Product.find().populate("category");
+  
+  let productsByCategory = {};
+  categories.forEach(category => {
+   
+    const categoryProducts = products.filter(product => 
+      String(product.category._id) === String(category._id)
+    );
 
-let productsByCategory = {};
-categories.forEach(category => {
-  productsByCategory [category._id] = {
-      categoryName: category.name,
-     products: products.filter(product => product.category._id.equals(category._id))
-  };
-});
+    if (categoryProducts.length > 0) {
+      productsByCategory[category._id] = {
+        categoryName: category.name,
+        products: categoryProducts
+      };
+    }
+  });
+  
 res.status(200).render('cycle', {
     page_name: 'cycle',
     user,

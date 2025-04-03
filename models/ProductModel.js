@@ -9,6 +9,7 @@ const productSchema = new Schema({
     price: {type: Number, required: true},
     color:{type:String, required: true},
     size: {type:Number, required:true}, 
+    quantity: {type:Number, required:true}, 
     image: {type: String },
     category:{type: mongoose.Schema.Types.ObjectId, ref:Category},
    

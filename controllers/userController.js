@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const session = require('express-session');
 const User = require('../models/UserModel');
+const Product = require('../models/ProductModel');
 
 
 exports.loginUser = async (req, res) => {
@@ -55,6 +56,68 @@ exports.deleteUser = async (req, res) => {
    console.log(error);
 }}
 
-exports.getShoppingPage = (req, res) =>{
-  res.render('shopping');
+exports.getBasket = (req, res) =>{
+
+  if (!req.session.basket) req.session.basket = [];
+  
+  res.render('shopping', 
+    { basket: req.session.basket} );
 };
+
+ exports.addToBasket = async (req, res) =>{
+  try {
+   const product = await Product.findOne({ _id: req.params.id });
+
+     if (!req.session.basket) req.session.basket = [];
+
+     const existingItem = req.session.basket.find(item => item._id.toString() === req.params.id);
+
+     if (existingItem) {
+      existingItem.quantity += 1; // Eğer ürün zaten varsa, sayısını artır
+     } else {
+       product.quantity = 1;
+       req.session.basket.push(product); //
+     }
+
+  console.log('Product added :' ,req.session.basket);
+ res.status(200).render('shopping',{ basket: req.session.basket },)
+
+} catch (error) {
+  res.status(500).json({ message: "Hata oluştu", error });
+}
+
+};
+
+exports.deleteBasket = async(req, res) => { 
+  try {
+    console.log(" session basket: ",req.session.basket)
+    if (!req.session.basket) req.session.basket = [];
+    const index = req.session.basket.findIndex(item => item._id.toString() === req.params.id);
+
+
+  if (index !== -1) {
+    req.session.basket.splice(index, 1);
+    req.session.save(); }
+  
+    res.status(200).redirect('/users/shopping');
+  } catch (error) {
+    res.status(400).json({ status: 'fail', error });
+  }
+}
+
+exports.decreaseBasket= async(req, res) => { 
+  try {
+ 
+    const product = await Product.findOne({ _id: req.params.id });
+    const existingItem = req.session.basket.find(item => item._id.toString() === req.params.id);
+     
+    if(existingItem.quantity > 1 ){
+      existingItem.quantity --;
+    }
+   
+    res.status(200).redirect('/users/shopping');
+  } catch (error) {
+    res.status(400).json({ status: 'fail', error });
+  }
+}
+

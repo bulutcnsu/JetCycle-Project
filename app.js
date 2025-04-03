@@ -32,6 +32,16 @@ app.use(
     store: MongoStore.create({ mongoUrl: 'mongodb://localhost/jetcycle-db' })
     })
 );
+app.use((req, res, next) => {
+  if (!req.session.basket) req.session.basket = [];
+
+  res.locals.totalPrice = req.session.basket.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, 0);
+  
+  next();
+});
+
 app.use(flash());
 app.use((req, res, next)=> {
   res.locals.flashMessages = req.flash();

@@ -173,12 +173,11 @@
                      </span> 
                   </div>
                 </div>
-
          
               </div>
              
             <div class="btn-box">
-              <a href="">
+              <a href="/users/shopping/<%= product.id %>?_method=POST">
                 Add To Cart
               </a>
             </div>
@@ -243,7 +242,7 @@
         </div>
        
       <div class="btn-box">
-        <a href="">
+        <a href="/users/shopping/<%= product.id %>">
           Add To Cart
         </a>
       </div>
@@ -318,6 +317,17 @@
                 </div>
             </div>    
           </div>    
+
+          <div class="row">
+            <div class="col-12 col-md-4">  <label for="quantity" class="col-form-label"> Quantity:</label></div>  
+            <div class="col-12 col-md-8"> 
+               <div class="input-group mb-3">
+               
+                <input type="text" name ="quantity" class="form-control" aria-label="Amount ">
+              
+              </div>
+          </div>    
+        </div>   
              
             
             <div class="row">

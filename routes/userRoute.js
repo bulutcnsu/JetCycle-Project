@@ -8,7 +8,12 @@ const router = express.Router();
 router.route("/login").post(loginMiddleware,userController.loginUser);
 router.route("/signup").post(registerMiddleware,userController.registerUser);
 router.route("/logout").get(userController.logoutUser);
-router.route("/shopping").get(userController.getShoppingPage);
 router.route("/:id").delete(userController.deleteUser);
+
+router.route("/shopping").get(userController.getBasket);
+router.route("/shopping/:id").get(userController.addToBasket);
+router.route("/shopping/:id").delete(userController.deleteBasket);
+
+router.route("/shopping/decrease/:id").delete(userController.decreaseBasket);
 
 module.exports = router;

@@ -21,6 +21,7 @@ exports.createProduct = async(req, res) => {
       price: req.body.price,
       size :req.body.size,
       category : req.body.category,
+      quantity : req.body.quantity,
       image: '/uploads/' + uploadImage.name,
     });
   
@@ -67,5 +68,4 @@ res.status(200).render('cycle', {
     productsByCategory
   });
 }
-
 

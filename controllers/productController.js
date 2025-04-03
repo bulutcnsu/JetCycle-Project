@@ -11,7 +11,7 @@ exports.createProduct = async(req, res) => {
   const __dirname = path.resolve();
   let uploadImage = await req.files.image;
   let uploadPath = __dirname + '/public/uploads/' + uploadImage.name;
-   console.log(" bana gelen foto : ",uploadImage);
+   
 
    uploadImage.mv(uploadPath, async  () => {
     const product = new Product({
@@ -33,7 +33,7 @@ exports.createProduct = async(req, res) => {
 return res.status(201).redirect('/');
 
 if(mongoose.Error) { 
-  console.log("form dan gelen deger :", req.body);
+  console.log("values come from form :", req.body);
   res.status(400).redirect('/');
  }
 }

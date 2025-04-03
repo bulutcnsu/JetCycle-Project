@@ -73,7 +73,7 @@ exports.getBasket = (req, res) =>{
      const existingItem = req.session.basket.find(item => item._id.toString() === req.params.id);
 
      if (existingItem) {
-      existingItem.quantity += 1; // Eğer ürün zaten varsa, sayısını artır
+      existingItem.quantity += 1; 
      } else {
        product.quantity = 1;
        req.session.basket.push(product); //
@@ -90,7 +90,7 @@ exports.getBasket = (req, res) =>{
 
 exports.deleteBasket = async(req, res) => { 
   try {
-    console.log(" session basket: ",req.session.basket)
+ 
     if (!req.session.basket) req.session.basket = [];
     const index = req.session.basket.findIndex(item => item._id.toString() === req.params.id);
 
